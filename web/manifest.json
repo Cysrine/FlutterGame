@@ -1,6 +1,6 @@
 {
-    "name": "endless_runner",
-    "short_name": "endless_runner",
+    "name": "brick",
+    "short_name": "brick",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
