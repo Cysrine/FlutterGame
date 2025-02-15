@@ -8,8 +8,8 @@ import 'bullet_component.dart';
 /// A purple square of size 20x20 at the bottom of the screen, shooting bullets.
 class PlayerComponent extends PositionComponent
     with HasGameRef<MyGame> {
-  final double _widthAndHeight = 20;
-  final double _shootInterval = 1.0; // shoot every 1 second
+  final double _widthAndHeight = 40;
+  final double _shootInterval = 1.5; // shoot every 1 second
   double _shootTimer = 0;
 
   PlayerComponent();
@@ -33,7 +33,7 @@ class PlayerComponent extends PositionComponent
     final gameWidth = gameRef.size.x;
     final gameHeight = gameRef.size.y;
     x = (gameWidth - width) / 2;     // center horizontally
-    y = gameHeight - height - 10;    // a bit above bottom
+    y = gameHeight - height - 50;    // a bit above bottom
   }
 
   @override
