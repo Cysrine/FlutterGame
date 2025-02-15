@@ -27,7 +27,11 @@ flutter:
 
   assets:
     - assets/pixelgalaxy.jpg
-    - assets/rocketspaceship.webp
+    - assets/images/player.svg
+    - assets/images/player.webp
+    - assets/player.webp
+    - assets/player.svg
+    
 
   # To add assets to your application, add an assets section, like this:
   # assets:

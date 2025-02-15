@@ -5,49 +5,46 @@ import 'dart:math' as math;
 import 'my_game.dart';
 import 'bullet_component.dart';
 
-/// A purple square of size 20x20 at the bottom of the screen, shooting bullets.
-class PlayerComponent extends PositionComponent
+class PlayerComponent extends SpriteComponent
     with HasGameRef<MyGame> {
-  final double _widthAndHeight = 40;
-  final double _shootInterval = 1.5; // shoot every 1 second
+  final double _shootInterval = 1.0; // shoot every 1 second
   double _shootTimer = 0;
 
-  PlayerComponent();
+  PlayerComponent() : super();
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
 
-    // Size of the player
-    this.size = Vector2.all(_widthAndHeight);
+    // Load the .webp sprite
+    sprite = await gameRef.loadSprite('player.webp');
 
-    // We'll position the player near the bottom center in onMount,
-    // since the gameRef.size is known there.
+    // Set the initial size
+    // Option A: match the image’s original size:
+    // size = sprite!.srcSize;
+    // Option B: explicitly define the size in logical pixels:
+    size = Vector2.all(50);
+
+    // We'll position the player near the bottom in onMount(),
+    // once gameRef.size is known.
   }
 
   @override
   void onMount() {
     super.onMount();
 
-    // Bottom-center position
+    // Bottom-center position, 50px above bottom for example:
     final gameWidth = gameRef.size.x;
     final gameHeight = gameRef.size.y;
-    x = (gameWidth - width) / 2;     // center horizontally
-    y = gameHeight - height - 50;    // a bit above bottom
-  }
-
-  @override
-  void render(Canvas canvas) {
-    super.render(canvas);
-    final paint = Paint()..color = Colors.purple;
-    canvas.drawRect(size.toRect(), paint);
+    x = (gameWidth - width) / 2;
+    y = gameHeight - height - 50;
   }
 
   @override
   void update(double dt) {
     super.update(dt);
 
-    // Simple auto-shoot on a timer
+    // Shooting logic remains the same
     _shootTimer += dt;
     if (_shootTimer >= _shootInterval) {
       _shootTimer = 0;
@@ -55,22 +52,20 @@ class PlayerComponent extends PositionComponent
     }
   }
 
-  /// Fire three bullets: one straight up, and two at ±30° from up.
   void _shootThreeBullets() {
-    // We'll define angles in radians, where 0 rad = right, π/2 rad = down, -π/2 rad = up.
-    // So "up" is -π/2. We want ±30° from that in degrees => ±(30°) = ±(π/6).
     const double middleAngle = -math.pi / 2; // straight up
-    const double angleOffset = math.pi / 6;  // 30 degrees in radians
+    const double angleOffset = math.pi / 6;  // 30 degrees
 
     final angles = [
-      middleAngle - angleOffset, // left bullet (120° from the x-axis)
-      middleAngle,               // center bullet (90° from x-axis => straight up)
-      middleAngle + angleOffset, // right bullet (60° from the x-axis)
+      middleAngle - angleOffset,
+      middleAngle,
+      middleAngle + angleOffset,
     ];
 
+    // Center bullets relative to player's mid-top
     for (final angle in angles) {
       final bullet = BulletComponent(
-        startX: x + width / 2,  // center of player
+        startX: x + width / 2,
         startY: y,
         angle: angle,
       );
