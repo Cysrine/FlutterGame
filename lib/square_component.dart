@@ -8,7 +8,7 @@ import 'my_game.dart';
 class SquareComponent extends PositionComponent
     with CollisionCallbacks, HasGameRef<MyGame> {
   final Color color;
-  final double fallSpeed = 200; // pixels per second
+  final double fallSpeed = 900; // pixels per second
 
   SquareComponent({
     required double positionX,

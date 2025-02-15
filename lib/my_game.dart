@@ -1,4 +1,5 @@
 import 'package:flame/game.dart';
+import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -7,24 +8,26 @@ import 'score_text_component.dart';
 import 'player_component.dart';
 
 /// Our main Flame game class. We enable collision detection with the mixin.
-class MyGame extends FlameGame with HasCollisionDetection {
+class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
   double _spawnTimer = 0.0;
   final double _spawnInterval = 1.0; // spawn a block every 1 second
 
   // Keep reference to score text so we can update it.
-  late ScoreTextComponent scoreText; //what is late?
+  late ScoreTextComponent scoreText;
+
+  late PlayerComponent player;
 
   @override
-  Future<void> onLoad() async {  //struct??
+  Future<void> onLoad() async { 
     await super.onLoad();
-  //super?
+
     // Add the score text at the top-left
     scoreText = ScoreTextComponent();
     add(scoreText);
 
     // Add the player near the bottom center
     // We'll position it after the game has a defined size (in onMount below).
-    final player = PlayerComponent();
+    player = PlayerComponent();
     add(player);
   }
 
@@ -62,4 +65,18 @@ class MyGame extends FlameGame with HasCollisionDetection {
   void addToScore(int points) {
     scoreText.increment(points);
   }
+
+  @override
+  void onPanUpdate(DragUpdateInfo info) {
+    super.onPanUpdate(info);
+    
+    final dragPosition = info.eventPosition.game;
+    player.x = dragPosition.x - (player.width / 2);
+    if(player.x <0) {
+      player.x = 0;
+    }
+    else if (player.x + player.width > size.x) {
+      player.x = size.x - player.width;
+    }
+  } 
 }
