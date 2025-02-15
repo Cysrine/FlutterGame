@@ -27,6 +27,7 @@ flutter:
 
   assets:
     - assets/pixelgalaxy.jpg
+    - assets/tinyrocket.jpg
     - assets/images/player.webp
     - assets/images/heart.png
 
