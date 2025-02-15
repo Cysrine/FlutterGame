@@ -28,7 +28,7 @@ flutter:
   assets:
     - assets/pixelgalaxy.jpg
     - assets/player.webp
-    - assets/player.svg
+    - assets/images/player.webp
  
   fonts:
     - family: PixelFont
