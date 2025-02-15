@@ -65,7 +65,7 @@ class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
   void addToScore(int points) {
     scoreText.increment(points);
   }
-
+/*
   @override
   void onPanUpdate(DragUpdateInfo info) {
     super.onPanUpdate(info);
@@ -79,4 +79,5 @@ class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
       player.x = size.x - player.width;
     }
   } 
+  */
 }
