@@ -24,7 +24,7 @@ class PlayerComponent extends SpriteComponent
     // size = sprite!.srcSize;
     // Option B: explicitly define the size in logical pixels:
     size = Vector2.all(50);
-
+    angle = -math.pi / 2;
     // We'll position the player near the bottom in onMount(),
     // once gameRef.size is known.
   }
