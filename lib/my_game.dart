@@ -66,17 +66,17 @@ class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
     scoreText.increment(points);
   }
 
-  @override
-  void onPanUpdate(DragUpdateInfo info) {
-    super.onPanUpdate(info);
+  // @override
+  // void onPanUpdate(DragUpdateInfo info) {
+  //   super.onPanUpdate(info);
     
-    final dragPosition = info.eventPosition.game;
-    player.x = dragPosition.x - (player.width / 2);
-    if(player.x <0) {
-      player.x = 0;
-    }
-    else if (player.x + player.width > size.x) {
-      player.x = size.x - player.width;
-    }
-  } 
+  //   final dragPosition = info.eventPosition.game;
+  //   player.x = dragPosition.x - (player.width / 2);
+  //   if(player.x <0) {
+  //     player.x = 0;
+  //   }
+  //   else if (player.x + player.width > size.x) {
+  //     player.x = size.x - player.width;
+  //   }
+  // } 
 }
