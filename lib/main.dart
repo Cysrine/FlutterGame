@@ -36,7 +36,9 @@ class MainMenu extends StatelessWidget {
               children: [
                 const Text(
                   'Asteroid Shooter',
-                  style: TextStyle(fontSize: 32, color: Colors.white),
+                  style: TextStyle(fontSize: 32,
+                  color: Colors.white,
+                  fontFamily: 'PixelFont'),
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(

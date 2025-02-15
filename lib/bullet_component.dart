@@ -60,10 +60,30 @@ class BulletComponent extends PositionComponent
     super.onCollision(intersectionPoints, other);
 
     // If we hit a falling square, remove both and increment score
-    if (other is SquareComponent) {
-      other.removeFromParent(); // remove the square
-      removeFromParent();       // remove the bullet
-      gameRef.addToScore(1);
+if (other is SquareComponent) {
+    // Check if the square is red
+    if (other.color == Colors.red) {
+        gameRef.addToScore(3); // Increment score by 3 for red squares
+    } else {
+        gameRef.addToScore(1); // Increment score by 1 for other colors
     }
+    other.removeFromParent(); // remove the square
+    removeFromParent(); // remove the bullet
+}
   }
 }
+/*
+
+if (other is SquareComponent) {
+    // Check if the square is red
+    if (other.color == Colors.red) {
+        gameRef.addToScore(3); // Increment score by 3 for red squares
+    } else {
+        gameRef.addToScore(1); // Increment score by 1 for other colors
+    }
+    other.removeFromParent(); // remove the square
+    removeFromParent(); // remove the bullet
+}
+
+
+*/
