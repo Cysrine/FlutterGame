@@ -1,5 +1,6 @@
+import 'package:flame/events.dart';
 import 'package:flame/game.dart';
-import 'package:flame/input.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -36,7 +37,7 @@ class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
     super.update(dt);
 
     // Spawn new falling squares on a timer
-    _spawnTimer += dt;    //_???
+    _spawnTimer += dt;  
     if (_spawnTimer >= _spawnInterval) {
       _spawnTimer = 0;
       spawnFallingSquare();
@@ -66,17 +67,16 @@ class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
     scoreText.increment(points);
   }
 
-  // @override
-  // void onPanUpdate(DragUpdateInfo info) {
-  //   super.onPanUpdate(info);
-    
-  //   final dragPosition = info.eventPosition.game;
-  //   player.x = dragPosition.x - (player.width / 2);
-  //   if(player.x <0) {
-  //     player.x = 0;
-  //   }
-  //   else if (player.x + player.width > size.x) {
-  //     player.x = size.x - player.width;
-  //   }
-  // } 
+  @override
+  void onPanUpdate(DragUpdateInfo info) {
+    final dragPosition = info.eventPosition.global;
+    player.x = dragPosition.x - (player.width / 2);
+
+    // Clamp player position within screen bounds
+    if (player.x < 0) {
+      player.x = 0;
+    } else if (player.x + player.width > size.x) {
+      player.x = size.x - player.width;
+    }
+  }
 }
