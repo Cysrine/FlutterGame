@@ -12,12 +12,12 @@ class MyGame extends FlameGame with HasCollisionDetection {
   final double _spawnInterval = 1.0; // spawn a block every 1 second
 
   // Keep reference to score text so we can update it.
-  late ScoreTextComponent scoreText;
+  late ScoreTextComponent scoreText; //what is late?
 
   @override
-  Future<void> onLoad() async {
+  Future<void> onLoad() async {  //struct??
     await super.onLoad();
-
+  //super?
     // Add the score text at the top-left
     scoreText = ScoreTextComponent();
     add(scoreText);
@@ -33,7 +33,7 @@ class MyGame extends FlameGame with HasCollisionDetection {
     super.update(dt);
 
     // Spawn new falling squares on a timer
-    _spawnTimer += dt;
+    _spawnTimer += dt;    //_???
     if (_spawnTimer >= _spawnInterval) {
       _spawnTimer = 0;
       spawnFallingSquare();
