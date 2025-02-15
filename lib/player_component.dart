@@ -1,12 +1,14 @@
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/main.dart';
+import 'package:flutter_application_1/square_component.dart';
 import 'dart:math' as math;
 
 import 'my_game.dart';
 import 'bullet_component.dart';
 
-class PlayerComponent extends SpriteComponent
-    with HasGameRef<MyGame> {
+class PlayerComponent extends SpriteComponent with CollisionCallbacks, HasGameRef<MyGame> {
   final double _shootInterval = 1.0; // shoot every 1 second
   double _shootTimer = 0;
 
@@ -25,6 +27,8 @@ class PlayerComponent extends SpriteComponent
     // Option B: explicitly define the size in logical pixels:
     size = Vector2.all(50);
     angle = -math.pi / 2;
+    debugMode = true;
+    add(RectangleHitbox());
     // We'll position the player near the bottom in onMount(),
     // once gameRef.size is known.
   }
@@ -71,5 +75,18 @@ class PlayerComponent extends SpriteComponent
       );
       gameRef.add(bullet);
     }
+
   }
+
+  @override
+void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+  super.onCollision(intersectionPoints, other);
+
+  if (other is SquareComponent) {
+    removeFromParent();
+    MainMenu();
+    // Handle player damage or response here
+  }
+}
+
 }
