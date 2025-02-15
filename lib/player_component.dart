@@ -8,6 +8,7 @@ import 'dart:math' as math;
 import 'my_game.dart';
 import 'bullet_component.dart';
 
+
 class PlayerComponent extends SpriteComponent with CollisionCallbacks, HasGameRef<MyGame> {
   final double _shootInterval = 1.0; // shoot every 1 second
   double _shootTimer = 0;
@@ -83,8 +84,9 @@ void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
   super.onCollision(intersectionPoints, other);
 
   if (other is SquareComponent) {
-    removeFromParent();
-    MainMenu();
+    other.removeFromParent();
+    gameRef.hitDamage();
+
     // Handle player damage or response here
   }
 }

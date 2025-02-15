@@ -16,7 +16,11 @@ class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
   // Keep reference to score text so we can update it.
   late ScoreTextComponent scoreText;
 
+  late LifeComponent health;
+
   late PlayerComponent player;
+
+  
 
   @override
   Future<void> onLoad() async { 
@@ -25,6 +29,9 @@ class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
     // Add the score text at the top-left
     scoreText = ScoreTextComponent();
     add(scoreText);
+
+    health = LifeComponent();
+    add(health);
 
     // Add the player near the bottom center
     // We'll position it after the game has a defined size (in onMount below).
@@ -65,6 +72,10 @@ class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
   /// Increase the displayed score by [points].
   void addToScore(int points) {
     scoreText.increment(points);
+  }
+
+  void hitDamage() {
+    health.byeByeHeart();
   }
 
   @override

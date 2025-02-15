@@ -25,3 +25,31 @@ class ScoreTextComponent extends TextComponent with HasGameRef<MyGame> {
     text = score.toString();
   }
 }
+
+class LifeComponent extends PositionComponent with HasGameRef<MyGame> {
+  int life = 5;
+  final double space = 30;
+  late SpriteComponent heartComponent;
+  final List<SpriteComponent> hearts = [];
+
+  LifeComponent();
+
+  @override
+  Future<void> onLoad() async {
+    await super.onLoad();
+    for(int i = 0; i < life; i++) {
+      heartComponent = SpriteComponent();
+      heartComponent.sprite = await gameRef.loadSprite('heart.png');
+      heartComponent.size = Vector2(45, 45);
+      heartComponent.position = Vector2(30 + (i*space), 40);
+      add(heartComponent);
+      hearts.add(heartComponent);
+    }
+  }
+  void byeByeHeart() {
+    if (life >= 0) {
+      life -= 1;
+      remove(hearts[life]);
+    }
+  }
+}
