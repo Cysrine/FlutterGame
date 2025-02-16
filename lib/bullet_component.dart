@@ -24,6 +24,13 @@ class BulletComponent extends PositionComponent
     position = Vector2(startX - size.x / 2, startY - size.y); // center align
   }
 
+  // List of sound files
+  final List<String> soundFiles = [
+    'bulletCollision.mp3',
+    'bulletCollision1.mp3',
+    'bulletCollision2.mp3',
+  ];
+
   @override
   Future<void> onLoad() async {
     await super.onLoad();
@@ -66,12 +73,18 @@ class BulletComponent extends PositionComponent
     // If we hit a falling square, remove both and increment score
 if (other is SquareComponent) {
     // Check if the square is red
-    FlameAudio.play('bulletCollision.mp3');
+      // Randomly select a sound file
+      final random = math.Random();
+      final randomSound = soundFiles[random.nextInt(soundFiles.length)];
+
+      // Play the randomly selected sound
+      FlameAudio.play(randomSound);
     if (other.color == Colors.red) {
         gameRef.addToScore(3); // Increment score by 3 for red squares
     } else {
         gameRef.addToScore(1); // Increment score by 1 for other colors
     }
+
     other.removeFromParent(); // remove the square
     removeFromParent(); // remove the bullet
 }

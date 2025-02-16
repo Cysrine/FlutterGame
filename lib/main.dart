@@ -35,8 +35,8 @@ class MainMenu extends StatelessWidget {
                 '1. Shoot the falling asteroids to earn points.\n'
                 '2. Red asteroids are worth 3 points.\n'
                 '3. Other asteroids are worth 1 point.\n'
-                '4. Avoid letting the asteroids hit the ground.\n\n'
-                'Good luck and have fun!',
+                '4. Avoid getting hit by the asteroids.\n\n'
+                'Good luck out there!',
                 style: TextStyle(fontSize: 16, fontFamily: 'PixelFont'),
               ),
               Positioned(
@@ -55,7 +55,7 @@ class MainMenu extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('OK'),
+              child: const Text('OK', style: TextStyle(fontFamily: 'PixelFont')),
             ),
           ],
         );

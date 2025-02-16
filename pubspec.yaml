@@ -32,7 +32,11 @@ flutter:
     - assets/images/player.webp
     - assets/images/heart.png
     - assets/audio/bulletCollision.mp3
-
+    - assets/audio/bulletCollision1.mp3
+    - assets/audio/bulletCollision2.mp3
+    - assets/images/background.jpg
+    - assets/images/background2.png
+    - assets/images/background3.jpg
  
   fonts:
     - family: PixelFont

@@ -9,6 +9,9 @@ import 'square_component.dart';
 import 'score_text_component.dart';
 import 'player_component.dart';
 
+import 'package:flame/components.dart'; // This imports SpriteComponent
+import 'package:flame/sprite.dart'; // Import Sprite
+
 /// Our main Flame game class. We enable collision detection with the mixin.
 class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
   double _spawnTimer = 0.0;
@@ -24,11 +27,22 @@ class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
 
   late SquareComponent square;
 
-  
+  late SpriteComponent background;  
 
   @override
   Future<void> onLoad() async { 
     await super.onLoad();
+
+    // Load the background image
+    final backgroundSprite = await Sprite.load('background2.png');
+
+    // Create a SpriteComponent for the background
+    background = SpriteComponent()
+      ..sprite = backgroundSprite
+      ..size = size; // Set the size to match the game screen
+
+    // Add the background to the game (at the bottom of the component tree)
+    add(background);
 
     // Add the score text at the top-left
     scoreText = ScoreTextComponent();
