@@ -69,7 +69,9 @@ class MainMenu extends StatelessWidget {
       body: Stack(
         children: [
           // Background image
+          // Background image
           Positioned.fill(
+            child: Image.asset('assets/pixelgalaxy.jpg', fit: BoxFit.cover),
             child: Image.asset('assets/pixelgalaxy.jpg', fit: BoxFit.cover),
           ),
           Center(
@@ -78,6 +80,11 @@ class MainMenu extends StatelessWidget {
               children: [
                 const Text(
                   'Asteroid Shooter',
+                  style: TextStyle(
+                    fontSize: 32,
+                    color: Colors.white,
+                    fontFamily: 'PixelFont',
+                  ),
                   style: TextStyle(
                     fontSize: 32,
                     color: Colors.white,
