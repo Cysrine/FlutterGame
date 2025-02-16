@@ -12,7 +12,6 @@ import 'player_component.dart';
 class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
   double _spawnTimer = 0.0;
   final double _spawnInterval = 1.0; // spawn a block every 1 second
-
   // Keep reference to score text so we can update it.
   late ScoreTextComponent scoreText;
 
@@ -76,6 +75,18 @@ class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
 
   void hitDamage() {
     health.byeByeHeart();
+  }
+
+  void gameOver() {
+  pauseEngine(); 
+  overlays.add('GameOver'); 
+}
+
+  void reset() {
+    resumeEngine();
+    scoreText.score = 0;
+    scoreText.increment(0);
+    health.resuscitate();
   }
 
   @override

@@ -7,6 +7,7 @@ import 'dart:math' as math;
 
 import 'my_game.dart';
 import 'bullet_component.dart';
+import 'main.dart';
 
 
 class PlayerComponent extends SpriteComponent with CollisionCallbacks, HasGameRef<MyGame> {
