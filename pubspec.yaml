@@ -16,7 +16,6 @@ dependencies:
   flutter:
     sdk: flutter
   flame: ^1.2.0
-  flame_audio: ^1.0.0
 
 dev_dependencies:
   flutter_test:
