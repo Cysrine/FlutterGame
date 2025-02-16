@@ -10,7 +10,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-@override
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
 class MainMenu extends StatelessWidget {
   const MainMenu({super.key});
 
-  // Function to show the rules in a dialog with an image in the corner
   void _showRules(BuildContext context) {
     showDialog(
       context: context,
@@ -41,12 +40,12 @@ class MainMenu extends StatelessWidget {
                 style: TextStyle(fontSize: 16, fontFamily: 'PixelFont'),
               ),
               Positioned(
-                top: 0, // Adjust the position of the image
-                right: 0, // Adjust the position of the image
+                top: 0,
+                right: 0,
                 child: Image.asset(
-                  'assets/tinyrocket.jpg', // Path to your image
-                  width: 50, // Adjust the size of the image
-                  height: 50, // Adjust the size of the image
+                  'assets/tinyrocket.jpg',
+                  width: 50,
+                  height: 50,
                 ),
               ),
             ],
@@ -54,7 +53,7 @@ class MainMenu extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
+                Navigator.of(context).pop();
               },
               child: const Text('OK'),
             ),
@@ -63,24 +62,23 @@ class MainMenu extends StatelessWidget {
       },
     );
   }
- 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          // Background image
-          // Background image
           Positioned.fill(
             child: Image.asset('assets/pixelgalaxy.jpg', fit: BoxFit.cover),
           ),
-          
-          Center(
+          Align(
+            alignment: Alignment.center,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Text(
                   'Asteroid Shooter',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 32,
                     color: Colors.white,
@@ -90,7 +88,7 @@ class MainMenu extends StatelessWidget {
                 const SizedBox(height: 20),
                 SizedBox(
                   height: 30,
-                  width: 210, // Fixed width for the buttons
+                  width: 210,
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.push(
@@ -103,12 +101,12 @@ class MainMenu extends StatelessWidget {
                     child: const Text('Start Game', style: TextStyle(fontSize: 16, fontFamily: 'PixelFont')),
                   ),
                 ),
-                const SizedBox(height: 10), // Space between buttons
+                const SizedBox(height: 10),
                 SizedBox(
-                  width: 150, // Fixed width for the buttons
+                  width: 150,
                   child: ElevatedButton(
                     onPressed: () {
-                      _showRules(context); // Show the rules dialog
+                      _showRules(context);
                     },
                     child: const Text('Rules', style: TextStyle(fontSize: 16, fontFamily: 'PixelFont')),
                   ),
@@ -125,17 +123,10 @@ class MainMenu extends StatelessWidget {
 class GameScreen extends StatefulWidget {
   GameScreen({super.key});
 
-  final MyGame game = MyGame(); // Creating the game instance
+  final MyGame game = MyGame();
 
   @override
   _GameScreenState createState() => _GameScreenState();
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     body: GameWidget(game: game),
-  //   );
-  // }
 }
 
 class _GameScreenState extends State<GameScreen> {
@@ -158,7 +149,7 @@ class _GameScreenState extends State<GameScreen> {
   Widget gameOverScreen(BuildContext context) {
     return Center(
       child: Container(
-        color: Colors.black.withValues(alpha: 0.7),
+        color: Colors.black.withOpacity(0.7),
         padding: EdgeInsets.all(20),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -176,13 +167,24 @@ class _GameScreenState extends State<GameScreen> {
             ElevatedButton(
               onPressed: () {
                 setState(() {
-                  widget.game.overlays.remove('GameOver'); // Hide overlay
-                  widget.game.resumeEngine(); // Resume game
-                  widget.game.reset(); // Restart game
+                  widget.game.overlays.remove('GameOver');
+                  widget.game.resumeEngine();
+                  widget.game.reset();
                 });
               },
               child: const Text('Try Again', style: TextStyle(fontFamily: 'PixelFont')),
             ),
+            const SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const MainMenu()),
+                (route) => false, // Clear navigation stack
+              );
+            },
+            child: const Text('Main Menu', style: TextStyle(fontFamily: 'PixelFont')),
+          ),
           ],
         ),
       ),
