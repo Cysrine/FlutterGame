@@ -2,7 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flame/text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/main.dart';
-
+import 'package:flame_audio/flame_audio.dart'; 
 import 'my_game.dart';
 
 class ScoreTextComponent extends PositionComponent with HasGameRef<MyGame> {
@@ -87,6 +87,7 @@ class LifeComponent extends PositionComponent with HasGameRef<MyGame> {
   }
 
   void byeByeHeart() {
+    FlameAudio.play('damagesound.mp3'); // Play the damage sound effect
     if (life > 1) {
       life -= 1;
       remove(hearts[life]);
