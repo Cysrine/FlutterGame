@@ -16,6 +16,7 @@ dependencies:
   flutter:
     sdk: flutter
   flame: ^1.2.0
+  flame_audio: ^1.3.4
 
 dev_dependencies:
   flutter_test:
@@ -26,11 +27,11 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/soundeffect1.mp3
     - assets/pixelgalaxy.jpg
     - assets/tinyrocket.jpg
     - assets/images/player.webp
     - assets/images/heart.png
+    - assets/audio/bulletCollision.mp3
 
  
   fonts:

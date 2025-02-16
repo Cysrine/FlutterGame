@@ -2,6 +2,7 @@ import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'dart:math' as math;
 
 import 'square_component.dart';
@@ -40,6 +41,8 @@ class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
     // We'll position it after the game has a defined size (in onMount below).
     player = PlayerComponent();
     add(player);
+
+    FlameAudio.audioCache.load('bulletCollision.mp3');
   }
 
   @override

@@ -1,6 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame/collisions.dart';
 import 'package:flutter/material.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'dart:math' as math;
 
 import 'my_game.dart';
@@ -65,6 +66,7 @@ class BulletComponent extends PositionComponent
     // If we hit a falling square, remove both and increment score
 if (other is SquareComponent) {
     // Check if the square is red
+    FlameAudio.play('bulletCollision.mp3');
     if (other.color == Colors.red) {
         gameRef.addToScore(3); // Increment score by 3 for red squares
     } else {
