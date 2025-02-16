@@ -34,7 +34,7 @@ class ScoreTextComponent extends PositionComponent with HasGameRef<MyGame> {
               fontSize: 24, 
               color: Colors.white, 
               fontFamily: 'PixelFont')),
-              position: Vector2(gameRef.size.x / 2 - 50, gameRef.size.y - 40));
+              position: Vector2(10, gameRef.size.y - 40));
     add(highScoreText);
   }
 

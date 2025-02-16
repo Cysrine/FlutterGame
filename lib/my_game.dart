@@ -11,13 +11,17 @@ import 'player_component.dart';
 /// Our main Flame game class. We enable collision detection with the mixin.
 class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
   double _spawnTimer = 0.0;
-  final double _spawnInterval = 1.0; // spawn a block every 1 second
+  double _difficultyTimer = 0.0;
+  double fallSpeed = 200;
+  double _spawnInterval = 1.0; // spawn a block every 1 second
   // Keep reference to score text so we can update it.
   late ScoreTextComponent scoreText;
 
   late LifeComponent health;
 
   late PlayerComponent player;
+
+  late SquareComponent square;
 
   
 
@@ -41,14 +45,25 @@ class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
   @override
   void update(double dt) {
     super.update(dt);
-
     // Spawn new falling squares on a timer
     _spawnTimer += dt;  
+    _difficultyTimer += dt;
+    fallSpeed += (3*dt);
+
     if (_spawnTimer >= _spawnInterval) {
       _spawnTimer = 0;
       spawnFallingSquare();
     }
+    if(_difficultyTimer >= 30) {
+      _difficultyTimer = 0;
+      //fallSpeed += 100;
+      if(_spawnInterval > 0) {
+        _spawnInterval -= 0.25;
+      }
+    }
   }
+
+  
 
   void spawnFallingSquare() {
     // Pick a random horizontal position
@@ -59,7 +74,7 @@ class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
     final color = colors[math.Random().nextInt(colors.length)];
 
     // Create and add the falling square
-    final square = SquareComponent(
+    square = SquareComponent(
       positionX: randomX,
       positionY: 0,
       size: 20,
@@ -68,6 +83,10 @@ class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
     add(square);
   }
 
+void increaseDifficulty(double dt) {
+    increaseDifficulty(dt);
+    
+  }
   /// Increase the displayed score by [points].
   void addToScore(int points) {
     scoreText.increment(points);
@@ -87,6 +106,8 @@ class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
     scoreText.score = 0;
     scoreText.increment(0);
     health.resuscitate();
+    _spawnInterval = 1.0;
+    fallSpeed = 100;
   }
 
   @override
