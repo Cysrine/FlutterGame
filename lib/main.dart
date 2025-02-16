@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
 import 'my_game.dart';
+import 'package:flame_audio/flame_audio.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,8 +20,22 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MainMenu extends StatelessWidget {
+class MainMenu extends StatefulWidget {
   const MainMenu({super.key});
+
+  @override
+  _MainMenuState createState() => _MainMenuState();
+}
+
+class _MainMenuState extends State<MainMenu> {
+  @override
+  void initState() {
+    super.initState();
+    // Play the startup sound
+    FlameAudio.play('loginsound.mp3'); // Ensure 'startup.mp3' is in assets/audio/
+  }
+
+
 
   void _showRules(BuildContext context) {
     showDialog(
@@ -40,12 +55,12 @@ class MainMenu extends StatelessWidget {
                 style: TextStyle(fontSize: 16, fontFamily: 'PixelFont'),
               ),
               Positioned(
-                top: 0,
-                right: 0,
+                top: 55,
+                right: -15,
                 child: Image.asset(
-                  'assets/tinyrocket.jpg',
-                  width: 50,
-                  height: 50,
+                  'assets/ruleship.png',
+                  width: 150,
+                  height: 150,
                 ),
               ),
             ],

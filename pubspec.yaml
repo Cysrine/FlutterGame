@@ -27,6 +27,8 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/ruleship.png
+    - assets/rulesmoon.jpg
     - assets/pixelgalaxy.jpg
     - assets/tinyrocket.jpg
     - assets/images/player.webp
@@ -34,10 +36,12 @@ flutter:
     - assets/audio/bulletCollision.mp3
     - assets/audio/bulletCollision1.mp3
     - assets/audio/bulletCollision2.mp3
+    - assets/audio/damagesound.mp3
+    - assets/audio/loginsound.mp3
     - assets/images/background.jpg
     - assets/images/background2.png
     - assets/images/background3.jpg
- 
+
   fonts:
     - family: PixelFont
       fonts:
