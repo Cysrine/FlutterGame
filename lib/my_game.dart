@@ -57,7 +57,7 @@ class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
     if(_difficultyTimer >= 30) {
       _difficultyTimer = 0;
       //fallSpeed += 100;
-      if(_spawnInterval > 0) {
+      if(_spawnInterval > 0.25) {
         _spawnInterval -= 0.25;
       }
     }

@@ -40,8 +40,8 @@ class BulletComponent extends PositionComponent
   @override
   void update(double dt) {
     super.update(dt);
-    if(gameRef.scoreText.score / 100.0 == 0) {
-      speed += 100;
+    if(gameRef.scoreText.score / 100.0 == 0 && speed > 100) {
+      speed -= 100;
     }
     if(gameRef.scoreText.score == 0) {
       speed = 300;

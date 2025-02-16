@@ -24,7 +24,7 @@ class ScoreTextComponent extends PositionComponent with HasGameRef<MyGame> {
               fontSize: 24, 
               color: Colors.white, 
               fontFamily: 'PixelFont')),
-              position: Vector2(10, 10));
+              position: Vector2(10, 30));
     add(scoreText);
 
     highScoreText = TextComponent(
@@ -67,7 +67,7 @@ class LifeComponent extends PositionComponent with HasGameRef<MyGame> {
     healthText = TextComponent(
       text: "Health: ",
       textRenderer: TextPaint(style: const TextStyle(fontSize: 24, color: Colors.white, fontFamily: 'PixelFont')),
-      position: Vector2(10, 45), // Positioned near hearts
+      position: Vector2(10, 65), // Positioned near hearts
     );
     add(healthText);
     }
@@ -79,7 +79,7 @@ class LifeComponent extends PositionComponent with HasGameRef<MyGame> {
       heartComponent = (SpriteComponent()
       ..sprite = await gameRef.loadSprite('heart.png')
       ..size = Vector2(45, 45)
-      ..position = Vector2(175 + (i*space), 40)
+      ..position = Vector2(175 + (i*space), 60)
       );
       add(heartComponent);
       hearts.add(heartComponent);

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
 import 'my_game.dart';
@@ -62,7 +64,7 @@ class MainMenu extends StatelessWidget {
       },
     );
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,6 +75,7 @@ class MainMenu extends StatelessWidget {
           Positioned.fill(
             child: Image.asset('assets/pixelgalaxy.jpg', fit: BoxFit.cover),
           ),
+          
           Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
