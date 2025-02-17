@@ -74,6 +74,8 @@ class BulletComponent extends PositionComponent
 if (other is SquareComponent) {
     // Check if the square is red
       // Randomly select a sound file
+      other.removeFromParent(); // remove the square
+      removeFromParent(); // remove the bullet
       final random = math.Random();
       final randomSound = soundFiles[random.nextInt(soundFiles.length)];
 
@@ -85,8 +87,7 @@ if (other is SquareComponent) {
         gameRef.addToScore(1); // Increment score by 1 for other colors
     }
 
-    other.removeFromParent(); // remove the square
-    removeFromParent(); // remove the bullet
+    
 }
   }
 }
