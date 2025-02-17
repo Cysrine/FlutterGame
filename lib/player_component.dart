@@ -25,12 +25,10 @@ class PlayerComponent extends SpriteComponent with CollisionCallbacks, HasGameRe
     // Set the initial size
     // Option A: match the image’s original size:
     // size = sprite!.srcSize;
-    // Option B: explicitly define the size in logical pixels:
+    // Option B: explicitly define the size in pixels:
     size = Vector2.all(60);
     angle = -math.pi / 2;
     add(RectangleHitbox());
-    // We'll position the player near the bottom in onMount(),
-    // once gameRef.size is known.
   }
 
   @override

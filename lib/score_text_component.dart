@@ -87,7 +87,7 @@ class LifeComponent extends PositionComponent with HasGameRef<MyGame> {
   }
 
   void byeByeHeart() {
-    FlameAudio.play('damagesound.mp3'); // Play the damage sound effect
+    FlameAudio.play('damagesound.mp3');
     if (life > 1) {
       life -= 1;
       remove(hearts[life]);

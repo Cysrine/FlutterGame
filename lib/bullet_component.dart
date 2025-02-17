@@ -49,10 +49,10 @@ class BulletComponent extends PositionComponent
   void update(double dt) {
     super.update(dt);
     if(gameRef.scoreText.score / 100.0 == 0 && speed > 100) {
-      speed -= 100;
+      speed += 200;
     }
     if(gameRef.scoreText.score == 0) {
-      speed = 300;
+      speed = 200;
     }
     // Move in direction of [angle]
     //   0 rad is "to the right"

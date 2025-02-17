@@ -34,7 +34,7 @@ class MyGame extends FlameGame with PanDetector, HasCollisionDetection  {
     await super.onLoad();
 
     // Load the background image
-    final backgroundSprite = await Sprite.load('background2.png');
+    final backgroundSprite = await Sprite.load('background3.jpg');
 
     // Create a SpriteComponent for the background
     background = SpriteComponent()
